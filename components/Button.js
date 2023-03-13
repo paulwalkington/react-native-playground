@@ -2,7 +2,7 @@ import { StyleSheet, View, Pressable, Text } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useState, useEffect } from "react";
 
-export function ButtonWithCount() {
+export function ButtonWithCount({ colour }) {
   const [count, setCount] = useState(0);
 
   updateText = () => {
@@ -12,7 +12,7 @@ export function ButtonWithCount() {
   return (
     <View style={styles.buttonContainer}>
       <View>
-        <Text style={{ color: "white" }} onPress={this.updateText}>
+        <Text style={{ color: colour }} onPress={this.updateText}>
           {count}
         </Text>
       </View>
@@ -20,7 +20,7 @@ export function ButtonWithCount() {
   );
 }
 
-export function ButtonWithHookCount() {
+export function ButtonWithHookCount({ colour }) {
   // Declare a new state variable, which we'll call "count"
   const [count, setCount] = useState(0);
   const [name, setText] = useState("");
@@ -36,20 +36,16 @@ export function ButtonWithHookCount() {
   return (
     <View style={styles.buttonContainer}>
       <View>
-        <Text
-          style={{ color: "white" }}
-          color="white"
-          onPress={this.updateCount}
-        >
+        <Text style={{ color: colour }} onPress={this.updateCount}>
           hook count {count}
         </Text>
-        <Text style={{ color: "white" }}>{name}</Text>
+        <Text style={{ color: colour }}>{name}</Text>
       </View>
     </View>
   );
 }
 
-export function Button({ label, theme }) {
+export function CustomButton({ label, theme }) {
   if (theme === "primary") {
     return (
       <View

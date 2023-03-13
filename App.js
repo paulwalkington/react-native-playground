@@ -1,52 +1,35 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text } from "react-native";
-import { Component } from "react";
+import { ImagePickerScreen } from "./components/ImagePickerScreen";
+import { HomeScreen } from "./components/HomeScreen";
+import { ButtonCountScreen } from "./components/ButtonCountScreen";
+import { UserDetailsScreen } from "./components/UserDetailsScreen";
+import { EditUserDetailsScreen } from "./components/EditUserDetailsScreen";
+import { ApiCallScreen } from "./components/ApiCallScreen";
 
-import {
-  Button,
-  ButtonWithCount,
-  ButtonWithHookCount,
-} from "./components/Button";
-import ImageViewer from "./components/ImageViewer";
-import { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ViewPlaygroundScreen } from "./components/ViewPlaygroundScreen";
 
-const PlaceholderImage = require("./assets/images/background-image.png");
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} />
-      </View>
-      <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" />
-        {/* <Button label="Use this photo" /> */}
-        {/* <TextInANest></TextInANest> */}
-        <ButtonWithCount />
-        <ButtonWithHookCount />
-      </View>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: "Welcome" }}
+        />
+        <Stack.Screen name="ImagePicker" component={ImagePickerScreen} />
+        <Stack.Screen name="ButtonCount" component={ButtonCountScreen} />
+        <Stack.Screen
+          name="EditUserDetails"
+          component={EditUserDetailsScreen}
+        />
+        <Stack.Screen name="UserDetails" component={UserDetailsScreen} />
+        <Stack.Screen name="ApiCall" component={ApiCallScreen} />
+        <Stack.Screen name="ViewPlayground" component={ViewPlaygroundScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#25292e",
-    alignItems: "center",
-  },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  image: {
-    width: 320,
-    height: 200,
-    borderRadius: 18,
-  },
-});
